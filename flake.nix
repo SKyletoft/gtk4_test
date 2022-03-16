@@ -16,14 +16,14 @@
 					src = self;
 					cargoSha256 = "sha256-ah8IjShmivS6IWL3ku/4/j+WNr/LdUnh1YJnPdaFdcM=";
 					cargoLock.lockFile = "${self}/Cargo.lock";
-					buildInputs = with pkgs; [ pkg-config ];
-					nativeBuildInputs = with pkgs; [ gtk4 libadwaita pkg-config ];
+					nativeBuildInputs = with pkgs; [ pkg-config ];
+					buildInputs = with pkgs; [ gtk4 libadwaita pkg-config ];
 				};
 				defaultPackage = gtk4_test;
 				devShell = pkgs.mkShell {
 					shellHook = ''PS1="\e[32;1mnix-flake: \e[34m\w \[\033[00m\]\n↳ "'';
-					buildInputs = with pkgs; [ rustup ] ++ gtk4_test.buildInputs;
-					nativeBuildInputs = gtk4_test.nativeBuildInputs;
+					buildInputs = gtk4_test.buildInputs;
+					nativeBuildInputs = with pkgs; [ rustup ] ++ gtk4_test.nativeBuildInputs;
 				};
 			}
 		);
