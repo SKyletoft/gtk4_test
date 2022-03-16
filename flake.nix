@@ -16,8 +16,8 @@
 					src = self;
 					cargoSha256 = "sha256-ah8IjShmivS6IWL3ku/4/j+WNr/LdUnh1YJnPdaFdcM=";
 					cargoLock.lockFile = "${self}/Cargo.lock";
-					buildInputs = with pkgs; [ pkgconfig ];
-					nativeBuildInputs = with pkgs; [ gtk4 libadwaita pkgconfig ];
+					buildInputs = with pkgs; [ pkg-config ];
+					nativeBuildInputs = with pkgs; [ gtk4 libadwaita pkg-config ];
 				};
 				defaultPackage = gtk4_test;
 				devShell = pkgs.mkShell {
