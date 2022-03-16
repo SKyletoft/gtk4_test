@@ -28,11 +28,14 @@
 				program = "${self.packages.${system}.gtk4_test}/target/release/gtk4_test";
 			});
 			devShell = forAllSystems (system:
-				let pkgs = nixpkgsFor.${system};
+				let
+					pkgs = nixpkgsFor.${system};
+					gtk4_test = self.packages.${system}.gtk4_test;
 				in pkgs.mkShell {
 					shellHook = ''PS1="\e[32;1mnix-flake: \e[34m\w \[\033[00m\]\n↳ "'';
-					buildInputs = with pkgs; [ rustup pkgconfig ];
-					nativeBuildInputs = with pkgs; [ gtk4 libadwaita ];
+					buildInputs = with pkgs; [ rustup ] ++ gtk4_test.buildInputs;
+					nativeBuildInputs = gtk4_test.nativeBuildInputs;
+
 				});
 		};
 }
